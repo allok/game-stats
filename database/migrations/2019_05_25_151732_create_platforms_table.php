@@ -16,8 +16,9 @@ class CreatePlatformsTable extends Migration
         Schema::create('platforms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->boolean('is_active')->default(true);
+
             $table->unique('name');
-            $table->boolean('is_active');
         });
     }
 

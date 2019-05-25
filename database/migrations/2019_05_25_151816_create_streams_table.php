@@ -23,6 +23,8 @@ class CreateStreamsTable extends Migration
 
             $table->foreign('platform_id')->references('id')->on('platforms');
             $table->foreign('game_id')->references('id')->on('games');
+
+            $table->unique(['external_id', 'platform_id']);
         });
     }
 

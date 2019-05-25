@@ -15,9 +15,10 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('external_id');
             $table->string('name');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
+
+            $table->unique('name');
         });
     }
 
