@@ -56,12 +56,9 @@ final class TwitchApiHelixClient extends HelixGuzzleClient
     private function setToken()
     {
         try {
-            $a = microtime(1);
             $response = $this->oauthClient->getAppAccessToken('')->getBody()->getContents();
-            $b = microtime(1) - $a;
 
             self::$token = json_decode($response, true)['access_token'];
-            dump([self::$token => $b . 'pid' . getmypid()]);
         } catch (GuzzleException $e) {
             // Handle error
         }

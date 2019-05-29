@@ -2,7 +2,7 @@
 
 namespace App\Services\Platforms\Twitch;
 
-use App\Services\Platforms\Contract\PlatformMapperInterface;
+use App\Services\Platforms\Contracts\PlatformMapperInterface;
 use App\Services\Platforms\Twitch\Api\TwitchApi;
 
 class TwitchMapper implements PlatformMapperInterface
@@ -14,6 +14,10 @@ class TwitchMapper implements PlatformMapperInterface
         'pagination' => 'pagination.cursor',
     ];
 
+    /**
+     * @param string $fieldName
+     * @return mixed|string
+     */
     function __get(string $fieldName)
     {
         if (method_exists($this, $fieldName)) {

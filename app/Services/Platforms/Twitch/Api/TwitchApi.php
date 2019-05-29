@@ -2,7 +2,7 @@
 
 namespace App\Services\Platforms\Twitch\Api;
 
-use App\Services\Platforms\Contract\PlatformApiInterface;
+use App\Services\Platforms\Contracts\PlatformApiInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -38,6 +38,7 @@ class TwitchApi implements PlatformApiInterface
      * @param array $gameIds
      * @param string|null $after
      * @return array
+     * @throws \Exception
      */
     public function getStreams(array $gameIds, ?string $after): array
     {
@@ -49,23 +50,37 @@ class TwitchApi implements PlatformApiInterface
     /**
      * @param callable $callable
      * @return mixed
-     * @throws \Exception
+     * @throws ApiException
      */
     private function request(callable $callable)
     {
         try {
-            /** @var ResponseInterface $response */
-            $response = $callable();
-
-            $reset = $response->getHeaderLine('Ratelimit-Reset') - time();
-            echo 'Remaining:' . $response->getHeaderLine('Ratelimit-Remaining') . "reset in $reset \n";
+            $response = $this->callRequest($callable);
+            $this->handleRateLimit($response);
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            //report($e);
-            //dump($e->getMessage());
-
-            throw new \Exception($e->getMessage() . 'reset in ' . ($reset ?? 'no'));
+            throw new ApiException($e->getMessage(), $e->getCode());
         }
+    }
+
+    /**
+     * @param ResponseInterface $response
+     */
+    private function handleRateLimit(ResponseInterface $response)
+    {
+        // TODO implement
+        // $response->getHeaderLine('Ratelimit-Reset') - time();
+        // $response->getHeaderLine('Ratelimit-Remaining');
+    }
+
+    /**
+     * @param callable $callable
+     * @return ResponseInterface
+     * @throws GuzzleException
+     */
+    private function callRequest(callable $callable): ResponseInterface
+    {
+        return $callable();
     }
 }

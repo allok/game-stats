@@ -21,6 +21,9 @@ final class TwitchApiClient extends NewTwitchApi
         $this->gamesTopApi = new TwitchTopGamesApi($guzzleClient);
     }
 
+    /**
+     * @return TwitchTopGamesApi
+     */
     public function getGamesTopApi(): TwitchTopGamesApi
     {
         return $this->gamesTopApi;
