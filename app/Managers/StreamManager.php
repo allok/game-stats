@@ -32,13 +32,13 @@ class StreamManager
             ], [
                 'user_id' => $stream[$mapper->user_id],
                 'game_id' => $gameId,
-                //'started_at' => $now, // todo don't used - we use data in logs (remove from DB if unused)
             ])->id;
 
             $streamLogs[] = [
                 'stream_id' => $streamId,
                 'viewer_count' => $stream[$mapper->viewer_count],
                 'created_at' => $now,
+                'game_id' => $gameId,
             ];
         }
 
