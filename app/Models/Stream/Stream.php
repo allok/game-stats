@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $external_id
  * @property int $user_id
  * @property int $game_id
- * @property string $started_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream query()
@@ -22,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream whereGameId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream wherePlatformId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream whereStartedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\Stream whereUserId($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Game $game
@@ -38,11 +36,6 @@ class Stream extends Model
         'external_id',
         'user_id',
         'game_id',
-        'started_at',
-    ];
-
-    public $dates = [
-        'started_at',
     ];
 
     /**

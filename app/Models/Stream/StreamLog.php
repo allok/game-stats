@@ -20,13 +20,21 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\StreamLog whereViewerCount($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Stream\Stream $stream
+ * @property int $game_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Stream\StreamLog whereGameId($value)
  */
 class StreamLog extends Model
 {
     public $timestamps = false;
 
     public $fillable = [
+        'game_id',
+        'stream_id',
         'viewer_count',
+        'created_at',
+    ];
+
+    public $dates = [
         'created_at',
     ];
 

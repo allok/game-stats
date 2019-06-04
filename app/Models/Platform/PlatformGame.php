@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Platform\PlatformGame whereGameId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Platform\PlatformGame wherePlatformId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Game $game
+ * @property-read \App\Models\Platform\Platform $platform
  */
 class PlatformGame extends Model
 {

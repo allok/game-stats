@@ -19,7 +19,6 @@ class CreateStreamsTable extends Migration
             $table->unsignedBigInteger('external_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('game_id');
-            $table->timestamp('started_at');
 
             $table->foreign('platform_id')->references('id')->on('platforms');
             $table->foreign('game_id')->references('id')->on('games');
